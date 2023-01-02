@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>855219976912-pr26vesgsu582ji9pcl28ufmkiol91s5.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.855219976912-pr26vesgsu582ji9pcl28ufmkiol91s5</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAiEASPgBI4CsV_0-hKKO8zclMhvWep83c</string>
+	<key>GCM_SENDER_ID</key>
+	<string>855219976912</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.tutorialsTesting</string>
+	<key>PROJECT_ID</key>
+	<string>graduationproject-b9f1b</string>
+	<key>STORAGE_BUCKET</key>
+	<string>graduationproject-b9f1b.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:855219976912:ios:31434ce51d869d99fe3cd5</string>
+	<key>DATABASE_URL</key>
+	<string>https://graduationproject-b9f1b-default-rtdb.europe-west1.firebasedatabase.app</string>
+</dict>
+</plist>
