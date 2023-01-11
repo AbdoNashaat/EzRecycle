@@ -4,9 +4,9 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
 import 'package:EzRecycle/constants/colors.dart';
 import '../../../constants/text_strings.dart';
-import '../internetConnection/internetNotConnected.dart';
-import '../userAuthetication/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../features/authentication/userAuthetication/auth.dart';
+import '../features/internetConnection/internetNotConnected.dart';
 
 class accountinfo extends StatefulWidget {
   const accountinfo({Key? key}) : super(key: key);

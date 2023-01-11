@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -8,9 +7,8 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:provider/provider.dart';
 import 'package:EzRecycle/features/authentication/screens/widget_tree.dart';
 
-import '../internetConnection/internetNotConnected.dart';
-import '../userAuthetication/auth.dart';
-import 'VerifyPhone.dart';
+import '../../internetConnection/internetNotConnected.dart';
+
 
 
 class registrationByPhone extends StatefulWidget {
@@ -101,7 +99,7 @@ class _registrationByPhoneState extends State<registrationByPhone> {
                   padding: const EdgeInsets.all(10),
                   child: TextFormField(
                     validator: (value){
-                      if(value!.isEmpty || !RegExp(r'^[a-zA-Z0-9_]+$').hasMatch(value!)){
+                      if(value!.isEmpty || !RegExp(r'^[a-zA-Z0-9_]+$').hasMatch(value)){
                         return 'Only numbers, alphabet, and _ are allowed!!';
                       }else if(value.length >= 20){
                         return 'Maximum 20 characters are allowed!';
@@ -121,7 +119,7 @@ class _registrationByPhoneState extends State<registrationByPhone> {
                   padding: const EdgeInsets.all(10),
                   child: TextFormField(
                     validator: (value){
-                      if(value!.isEmpty || !RegExp(r'^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$').hasMatch(value!)){
+                      if(value!.isEmpty || !RegExp(r'^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$').hasMatch(value)){
                         return 'Enter a valid mail!';
                       }else{
                         email = value;
@@ -201,7 +199,7 @@ class _registrationByPhoneState extends State<registrationByPhone> {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.lightGreen,
+                      backgroundColor: Colors.lightGreen,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25),
                       ),

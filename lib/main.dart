@@ -1,21 +1,22 @@
+import 'package:EzRecycle/maps/infoAboutLocation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:EzRecycle/features/authentication/forget_password/forget_password_mail/forget_password_mail.dart';
-import 'package:EzRecycle/features/authentication/homePages/accountinfo.dart';
-import 'package:EzRecycle/features/authentication/homePages/add_new_locations.dart';
 import 'package:EzRecycle/features/authentication/login/registerByEmail.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:EzRecycle/features/authentication/login/registerByPhone.dart';
 import 'package:EzRecycle/features/authentication/screens/widget_tree.dart';
 import 'features/authentication/forget_password/forget_password_phone/forget_password_phone.dart';
-import 'features/authentication/homePages/QRScanPage.dart';
-import 'features/authentication/homePages/aboutUs.dart';
-import 'features/authentication/homePages/sendFeedBack.dart';
-import 'features/authentication/homePages/updates.dart';
-import 'features/maps/theMap.dart';
 import 'firebase_options.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
+import 'homePages/QRScanPage.dart';
+import 'homePages/aboutUs.dart';
+import 'homePages/accountinfo.dart';
+import 'homePages/add_new_locations.dart';
+import 'homePages/sendFeedBack.dart';
+import 'homePages/updates.dart';
+import 'maps/theMap.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,13 +44,14 @@ class MyApp extends StatelessWidget {
           '/registrationByPhone' : (context) => const registrationByPhone(),
           '/forgetpasswordmailscreen' : (context) => const ForgetPasswordMailScreen(),
           '/forgetpasswordphonescreen' : (context) => const ForgetPasswordPhoneScreen(),
-          '/accountinfo' : (context) => accountinfo(),
+          '/accountinfo' : (context) => const accountinfo(),
           '/maps' : (context) => const mapList(),
           '/aboutus' : (context) => const aboutUs(),
           '/sendfeedback' : (context) => const sendFeedBack(),
           '/updates' : (context) => const updates(),
           '/addnewlocation' : (context) =>  AddPlacePage(),
-          '/qrScan' : (context) => QRScanPage(),
+          '/qrScan' : (context) => const QRScanPage(),
+          '/infoAboutLocation' : (context) => const InfoAboutLocation(),
         },
       ),
     );

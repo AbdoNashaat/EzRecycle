@@ -1,11 +1,11 @@
+import 'package:EzRecycle/constants/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:image_picker/image_picker.dart';
 import '../../../constants/hard_coded_locations.dart';
-import '../userAuthetication/auth.dart';
+import '../features/authentication/userAuthetication/auth.dart';
 
 class AddPlacePage extends StatefulWidget {
   @override
@@ -15,6 +15,7 @@ class AddPlacePage extends StatefulWidget {
 class _AddPlacePageState extends State<AddPlacePage> {
   // Text controllers for the place title and info fields
   final User? user = Auth().currentUser;
+  final _picker = ImagePicker.platform;
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _infoController = TextEditingController();
   final TextEditingController _QRController = TextEditingController();
@@ -36,7 +37,9 @@ class _AddPlacePageState extends State<AddPlacePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundGray,
       appBar: AppBar(
+        backgroundColor: greenShade,
         title: const Text('New Location'),
       ),
       body: Padding(
@@ -100,7 +103,8 @@ class _AddPlacePageState extends State<AddPlacePage> {
                       ),
                     ),
                   ),
-                  // Button to submit the place data to Firestore
+
+                  // Button to submit the place data to FireStore
                   ElevatedButton(
                     onPressed: () async {
                       if(_latitude == notDefinedLocation || _longitude == notDefinedLocation ){

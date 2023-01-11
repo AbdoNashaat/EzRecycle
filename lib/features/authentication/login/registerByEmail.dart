@@ -1,14 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:provider/provider.dart';
-import 'package:EzRecycle/features/authentication/screens/widget_tree.dart';
-
 import '../../../constants/colors.dart';
-import '../internetConnection/internetNotConnected.dart';
+import '../../internetConnection/internetNotConnected.dart';
 import '../userAuthetication/auth.dart';
 
 
@@ -51,7 +48,7 @@ class _registrationByEmailState extends State<registrationByEmail> {
         email: _controllerEmail,
         password: _controllerPassword,
       );
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException {
       setState(() {});
     }
   }
@@ -90,7 +87,7 @@ class _registrationByEmailState extends State<registrationByEmail> {
                           if(value!.isEmpty){
                             return 'Required Field!';
                           }
-                          else if(!RegExp(r'^[a-zA-Z0-9_]+$').hasMatch(value!)){
+                          else if(!RegExp(r'^[a-zA-Z0-9_]+$').hasMatch(value)){
                             return 'Only numbers, alphabet, and _ are allowed!!';
                           }else if(value.length > 15){
                             return 'Maximum 15 characters are allowed!';
@@ -115,7 +112,7 @@ class _registrationByEmailState extends State<registrationByEmail> {
                           if(value!.isEmpty){
                             return 'Required Field!';
                           }
-                          else if(!RegExp(r'^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$').hasMatch(value!)){
+                          else if(!RegExp(r'^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$').hasMatch(value)){
                             return 'Enter a valid mail!';
                           }else{
                             email = value;
@@ -139,12 +136,12 @@ class _registrationByEmailState extends State<registrationByEmail> {
                           if(value!.isEmpty){
                             return 'Required Field!';
                           }
-                          else if(value!.length < 8){
+                          else if(value.length < 8){
                             return 'Password must be longer than 8 characters!';
-                          }else if(value!.length > 30){
+                          }else if(value.length > 30){
                             return 'The Max number of characters is 30!';
                           }else{
-                            passwordCheck = value!;
+                            passwordCheck = value;
                             return null;
                           }
                         },
@@ -164,7 +161,7 @@ class _registrationByEmailState extends State<registrationByEmail> {
                             return 'Please enter the same password!';
                           }else{
                             password = value!;
-                            _controllerPassword = value!;
+                            _controllerPassword = value;
                             return null;
                           }
                         },

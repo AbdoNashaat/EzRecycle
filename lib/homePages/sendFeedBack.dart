@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:EzRecycle/constants/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:EzRecycle/features/authentication/homePages/homePage.dart';
-import 'package:EzRecycle/features/authentication/screens/widget_tree.dart';
-import '../userAuthetication/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
+
+import '../features/authentication/userAuthetication/auth.dart';
 class sendFeedBack extends StatefulWidget {
   const sendFeedBack({Key? key}) : super(key: key);
 

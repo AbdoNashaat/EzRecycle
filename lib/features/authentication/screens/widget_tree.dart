@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:EzRecycle/features/authentication/homePages/homePage.dart';
 import 'package:EzRecycle/features/authentication/login/login.dart';
 import '../login/VerifyEmail.dart';
 import '../userAuthetication/auth.dart';

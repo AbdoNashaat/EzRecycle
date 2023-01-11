@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:EzRecycle/constants/colors.dart';
-import '../../HomePageList/my_drawer_header.dart';
-import '../userAuthetication/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../features/authentication/userAuthetication/auth.dart';
+import 'HomePageList/my_drawer_header.dart';
 
 class homePage extends StatefulWidget {
   const homePage({Key? key}) : super(key: key);
@@ -16,6 +16,7 @@ class homePage extends StatefulWidget {
 class _homePageState extends State<homePage> {
   final User? user = Auth().currentUser;
   late String _userType;
+  final List<String> pageNames = ['/forgetpasswordmailscreen','/qrScan','/updates','/aboutus','/sendfeedback','/addnewlocation','/accountinfo'];
   Future<void> signOut() async {
     await Auth().signOut();
   }
@@ -67,9 +68,9 @@ class _homePageState extends State<homePage> {
                     )
                 ),
               ),
-              containers('Collection Points',Icons.map,mapList),
-              containers('Scan QR code', Icons.qr_code, qrScan),
-              containers('Send Feedback', Icons.feed, sendFeedback),
+              containers('Collection Points',Icons.map,mapList,-1),
+              containers('Scan QR code', Icons.qr_code, nextPage,1),
+              containers('Send Feedback', Icons.feed, nextPage,4),
               addLocations(),
             ],
           ),
@@ -93,48 +94,24 @@ class _homePageState extends State<homePage> {
       padding: const EdgeInsets.only(top: 15),
       child: Column(
         children: [
-          menuItem('Update Account Info',Icons.account_circle_outlined,accountInfo),
-          menuItem('Change password',Icons.password,resetPassword),
-          menuItem('Latest Updates!', Icons.tips_and_updates, updatePage),
-          menuItem('About us', Icons.settings_applications_sharp, aboutAppplication),
-          menuItem('Sign out',Icons.logout,signOut),
+          menuItem('Update Account Info',Icons.account_circle_outlined,nextPage,6),
+          menuItem('Change password',Icons.password,nextPage,0),
+          menuItem('Latest Updates!', Icons.tips_and_updates, nextPage,2),
+          menuItem('About us', Icons.settings_applications_sharp, nextPage,3),
+          menuItem('Sign out',Icons.logout,signOut,-1),
         ],
       ),
     );
   }
 
-  void resetPassword(){
-    Navigator.pushNamed(context, '/forgetpasswordmailscreen');
-  }
-
-  void qrScan(){
-    Navigator.pushNamed(context, '/qrScan');
-  }
-
-  void updatePage(){
-    Navigator.pushNamed(context,'/updates');
-  }
-
-  void aboutAppplication(){
-    Navigator.pushNamed(context,'/aboutus');
-  }
-
-  void sendFeedback(){
-    Navigator.pushNamed(context,'/sendfeedback');
-  }
-
-  void addNewLocation(){
-    Navigator.pushNamed(context,'/addnewlocation');
+  void nextPage(int index){
+    Navigator.pushNamed(context, pageNames[index]);
   }
 
   void closeDrawer(){
     Navigator.pop(context);
   }
 
-  void accountInfo() async{
-    closeDrawer();
-    Navigator.pushNamed(context, '/accountinfo');
-  }
 
   void mapList(){
     _locationServiceCheck().then((value) async {
@@ -175,18 +152,23 @@ class _homePageState extends State<homePage> {
     return true;
   }
 
-  Widget containers(String text, IconData iconData,action){
+  Widget containers(String text, IconData iconData,action,int index){
     return Container(
       decoration: BoxDecoration(border: Border.all(color: const Color.fromRGBO(240, 244, 252, 1),width: 2)),
-        child: menuItem(text, iconData, action)
+        child: menuItem(text, iconData, action,index)
     );
   }
 
-  Widget menuItem(String text, IconData iconData,action){
+  Widget menuItem(String text, IconData iconData,action,int index){
     return Material(
       child: InkWell(
         onTap: (){
-          action();
+          if(index == -1){
+            action();
+          }
+          else{
+            action(index);
+          }
         },
         highlightColor: Colors.blue,
         child: Padding(
@@ -214,7 +196,7 @@ class _homePageState extends State<homePage> {
               snapshot.data!.data() as Map<String, dynamic>;
           _userType = data['account_type'];
           if(_userType == 'admin') {
-            return menuItem('Add new location', Icons.add, addNewLocation);
+            return menuItem('Add new location', Icons.add, nextPage,5);
           }
           else{
             return const SizedBox();

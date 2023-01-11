@@ -1,13 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:provider/provider.dart';
-import 'package:EzRecycle/features/authentication/forget_password/forget_password_options/forget_password_modal_bottom_sheet.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/text_strings.dart';
-import '../forget_password/forget_password_options/forget_password_btn_widget.dart';
-import '../internetConnection/internetNotConnected.dart';
+import '../../internetConnection/internetNotConnected.dart';
 import '../userAuthetication/auth.dart';
 
 
@@ -81,7 +78,7 @@ class _loginDemoState extends State<loginDemo> {
                     if(value![value.length-1] == " "){
                       return "Remove the space from your email";
                     }
-                    else if (value!.isEmpty || !RegExp(r'^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$').hasMatch(value!)) {
+                    else if (value.isEmpty || !RegExp(r'^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$').hasMatch(value)) {
                       return 'Not a valid Email!';
                     } else {
                       _controllerEmail = value;
@@ -135,7 +132,7 @@ class _loginDemoState extends State<loginDemo> {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: greenShade,
+                    backgroundColor: greenShade,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25),
                     ),

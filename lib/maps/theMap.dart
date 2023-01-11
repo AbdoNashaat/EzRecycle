@@ -1,16 +1,12 @@
 import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:EzRecycle/constants/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:EzRecycle/features/maps/mapToDestination.dart';
-import '../authentication/userAuthetication/auth.dart';
-import 'directions_model.dart';
+import '../features/authentication/userAuthetication/auth.dart';
 import 'directions_repository.dart';
+import 'mapToDestination.dart';
 
 class mapList extends StatefulWidget {
   const mapList({Key? key}) : super(key: key);
@@ -26,6 +22,7 @@ class _mapListState extends State<mapList> {
     late List<DocumentSnapshot> documents;
     late Icon qrSupport;
     late List<DocumentSnapshot> _filteredLocations;
+
     Stream<List<DocumentSnapshot>> getPlaces() {
       return FirebaseFirestore.instance.collection('locations').snapshots().map((snapshot) => snapshot.docs);
     }
@@ -94,10 +91,10 @@ class _mapListState extends State<mapList> {
                       title: Text(_filteredLocations[index]['title']),
                       subtitle: Text(_filteredLocations[index]['TypeOfWaste']),
                       onTap: (){
-                        if(_filteredLocations[index]['QR option'] == 'Supported'){
                         GeoPoint point = _filteredLocations[index]['location'];
+                        //Navigator.of(context).pushNamed('/infoAboutLocation');
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) => mapToDestination(locationLongitude: point.longitude,locationLatitude: point.latitude)));
-                        } else{
+                         /*else{
                           showDialog(
                             context: context,
                             builder: (context) {
@@ -130,7 +127,7 @@ class _mapListState extends State<mapList> {
                               );
                             },
                           );
-                        }
+                        }*/
                       },
                       trailing: FutureBuilder<String>(
                         future: locationString(_filteredLocations, index),

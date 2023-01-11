@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:EzRecycle/features/maps/directions_repository.dart';
-import '../authentication/userAuthetication/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../features/authentication/userAuthetication/auth.dart';
 import 'directions_model.dart';
+import 'directions_repository.dart';
 
 class mapToDestination extends StatefulWidget {
   final double locationLongitude;

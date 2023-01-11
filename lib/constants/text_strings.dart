@@ -32,3 +32,6 @@ const String warningText = 'Leave empty for no change';
 
 //Google Map tooltip
 const String googleMapToolTip = 'Tap destination, Then tap here for Google maps directions';
+
+//QR code key
+const String qrCodeKey = 'dasdasd78asd7sad8sahd78sadh87sd7dh';
